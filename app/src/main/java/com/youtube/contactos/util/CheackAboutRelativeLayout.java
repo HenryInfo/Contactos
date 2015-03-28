@@ -71,12 +71,12 @@ public class CheackAboutRelativeLayout extends RelativeLayout implements Checkab
         }
     }
 
-    private void buscarComponentesCheck(View childAt) {
-        if(childAt instanceof Checkable){
-            this.checkables.add((Checkable) childAt);
+    private void buscarComponentesCheck(View view) {
+        if(view instanceof Checkable){
+            this.checkables.add((Checkable) view);
         }
-        if(childAt instanceof ViewGroup){
-            final ViewGroup viewGroup=(ViewGroup)childAt;
+        if(view instanceof ViewGroup){
+            final ViewGroup viewGroup=(ViewGroup)view;
             final int childCount=viewGroup.getChildCount();
             for(int i=0;i<childCount;i++){
                 buscarComponentesCheck(viewGroup.getChildAt(i));

@@ -1,15 +1,32 @@
 package com.youtube.contactos.util;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 
 /**
  * Created by henryyerrybravosanchez on 3/12/15.
  */
+
+@DatabaseTable
 public class Contactos implements Serializable{
-    private String nombre, telefono, direccion, correo;
+    @DatabaseField(generatedId = true)
+    private  int id;
+    @DatabaseField(index = true, canBeNull = false)
+    private String nombre;
+    @DatabaseField
+    private String telefono;
+    @DatabaseField
+    private String direccion;
+    @DatabaseField
+    private String correo;
+    @DatabaseField
     private String imageUri;
 
+    public Contactos(){
 
+    }
     public Contactos(String nombre, String telefono, String direccion, String correo, String image) {
         this.nombre = nombre;
         this.telefono = telefono;
@@ -21,6 +38,9 @@ public class Contactos implements Serializable{
 
 
     //<editor-fold desc="METHOD GETERS">
+    public int getId() {
+        return id;
+    }
     public String getNombre() {
         return nombre;
     }
