@@ -3,7 +3,6 @@ package com.youtube.contactos.util;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.ShareActionProvider;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
@@ -18,7 +17,6 @@ public class ConcatReceiver extends BroadcastReceiver{
     public static final int CONTACTO_ELIMINADO=3;
     public static final int CONTACTO_ACTUALIZAR=2;
     public static final int CONTACTO_COMPARTIR=4;
-    private ShareActionProvider actionProvider;
     private final  OrmLiteBaseActivity<DataBaseHelper> activity ;
 
     public ConcatReceiver(OrmLiteBaseActivity<DataBaseHelper> activity ){

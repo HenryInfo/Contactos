@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,6 @@ public class AgregarContactoFragment extends Fragment implements View.OnClickLis
     private ImageView image;
     private int code_res=1;
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView=inflater.inflate(R.layout.crear_fragmento_contacto, container, false);
@@ -100,7 +98,7 @@ public class AgregarContactoFragment extends Fragment implements View.OnClickLis
                 txtTelefono.getText().toString(),
                 txtCorreo.getText().toString(),
                 txtDireccion.getText().toString(),
-                String.valueOf(image.getTag())
+                image.getTag()!=null? String.valueOf(image.getTag()): null
         );
         String mensaje= String.format("%s A sido agregado a la lista",txtNombre.getText());
         Toast.makeText(v.getContext(), mensaje, Toast.LENGTH_SHORT).show();

@@ -3,7 +3,6 @@ package com.youtube.contactos;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,6 @@ public class ContactoFragment extends Fragment implements CompoundButton.OnCheck
         return  contactoFragment;
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.row_lista_contacto, container, false);
@@ -60,11 +58,11 @@ public class ContactoFragment extends Fragment implements CompoundButton.OnCheck
     }
 
     private void inicializarComponentes(View view) {
-        viewNombre= (TextView) view.findViewById(R.id.txtNombre);
-        viewDireccion=(TextView)view.findViewById(R.id.txtDireccion);
-        viewEmail=(TextView) view.findViewById(R.id.txtEmail);
-        viewTelefono=(TextView)view.findViewById(R.id.txtTelefono);
-        imgContacto= (ImageView) view.findViewById(R.id.imgContacto);
+        viewNombre= (TextView) view.findViewById(R.id.txtListNombre);
+        viewDireccion=(TextView)view.findViewById(R.id.txtListDireccion);
+        viewEmail=(TextView) view.findViewById(R.id.txtListCorreo);
+        viewTelefono=(TextView)view.findViewById(R.id.txtListTelefono);
+        imgContacto= (ImageView) view.findViewById(R.id.imageView2);
         checkBox= (CheckBox) view.findViewById(R.id.checkbox);
         checkBox.setOnCheckedChangeListener(this);
         view.setOnClickListener(new View.OnClickListener() {
