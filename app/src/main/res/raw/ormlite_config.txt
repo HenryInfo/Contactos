@@ -1,0 +1,31 @@
+#
+# generated on 2015/03/15 12:59:00
+#
+# --table-start--
+dataClass=com.youtube.contactos.util.Contactos
+tableName=contactos
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nombre
+canBeNull=false
+indexName=contactos_nombre_idx
+# --field-end--
+# --field-start--
+fieldName=telefono
+# --field-end--
+# --field-start--
+fieldName=direccion
+# --field-end--
+# --field-start--
+fieldName=correo
+# --field-end--
+# --field-start--
+fieldName=imageUri
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
