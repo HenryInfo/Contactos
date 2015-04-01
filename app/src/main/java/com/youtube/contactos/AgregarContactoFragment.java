@@ -2,12 +2,15 @@ package com.youtube.contactos;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,26 +96,42 @@ public class AgregarContactoFragment extends Fragment implements View.OnClickLis
     }
 
     private void guardarContacto(View v) {
-        agregarContactos(
+       boolean result= agregarContactos(
                 txtNombre.getText().toString(),
                 txtTelefono.getText().toString(),
                 txtCorreo.getText().toString(),
                 txtDireccion.getText().toString(),
                 image.getTag()!=null? String.valueOf(image.getTag()): null
         );
-        String mensaje= String.format("%s A sido agregado a la lista",txtNombre.getText());
-        Toast.makeText(v.getContext(), mensaje, Toast.LENGTH_SHORT).show();
-        btnAgregar.setEnabled(false);
-        limpiarCampos();
+        if (result){
+            String mensaje= String.format("%s A sido agregado a la lista",txtNombre.getText());
+            Toast.makeText(v.getContext(), mensaje, Toast.LENGTH_SHORT).show();
+            btnAgregar.setEnabled(false);
+            limpiarCampos();
+        }
+        else {
+            AlertDialog.Builder alert= new AlertDialog.Builder(v.getContext());
+            alert.setTitle("Error");
+            alert.setMessage("No se ha asignado el usuario en las preferencias");
+            alert.setPositiveButton("OK",null);
+            alert.show();
+        }
+
     }
 
-    private void agregarContactos(String s, String s1, String s2, String s3, String image) {
-        Contactos contacto= new Contactos(s, s1, s3, s2, image);
-        Intent intent= new Intent("lc");
-        intent.putExtra("operacion", ConcatReceiver.CONTACTO_AGREGADO);
-        intent.putExtra("datos", contacto);
-        getActivity().sendBroadcast(intent );
-        limpiarCampos();
+    private boolean agregarContactos(String s, String s1, String s2, String s3, String image) {
+        SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String user= sp.getString("username", null);
+        if (user!=null){
+            Contactos contacto= new Contactos(s, s1, s3, s2, image, user);
+            Intent intent= new Intent("lc");
+            intent.putExtra("operacion", ConcatReceiver.CONTACTO_AGREGADO);
+            intent.putExtra("datos", contacto);
+            getActivity().sendBroadcast(intent );
+            limpiarCampos();
+            return true;
+        }
+        return false;
     }
 
     private void limpiarCampos() {
